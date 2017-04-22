@@ -1,0 +1,457 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/jamesdbloom/grunt-debian-package"
+
+    >grunt-debian-package (v0.1.12)</a>
+</h1>
+<h4>Create debian package from grunt build</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-debian-package">module grunt-debian-package</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">grunt-debian-package.</span>fileOrDirectory</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">grunt-debian-package.</span>options</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">grunt-debian-package.</span>replace</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-debian-package.fileOrDirectory">module grunt-debian-package.fileOrDirectory</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-debian-package.fileOrDirectory._cleanUp">
+            function <span class="apidocSignatureSpan">grunt-debian-package.fileOrDirectory.</span>_cleanUp
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-debian-package.fileOrDirectory._copy">
+            function <span class="apidocSignatureSpan">grunt-debian-package.fileOrDirectory.</span>_copy
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-debian-package.fileOrDirectory._delete">
+            function <span class="apidocSignatureSpan">grunt-debian-package.fileOrDirectory.</span>_delete
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-debian-package.options">module grunt-debian-package.options</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-debian-package.options._validate">
+            function <span class="apidocSignatureSpan">grunt-debian-package.options.</span>_validate
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-debian-package.replace">module grunt-debian-package.replace</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-debian-package.replace._findAndReplace">
+            function <span class="apidocSignatureSpan">grunt-debian-package.replace.</span>_findAndReplace
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-debian-package.replace._transformAndReplace">
+            function <span class="apidocSignatureSpan">grunt-debian-package.replace.</span>_transformAndReplace
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-debian-package" id="apidoc.module.grunt-debian-package">module grunt-debian-package</a></h1>
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-debian-package.fileOrDirectory" id="apidoc.module.grunt-debian-package.fileOrDirectory">module grunt-debian-package.fileOrDirectory</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-debian-package.fileOrDirectory._cleanUp" id="apidoc.element.grunt-debian-package.fileOrDirectory._cleanUp">
+        function <span class="apidocSignatureSpan">grunt-debian-package.fileOrDirectory.</span>_cleanUp
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_cleanUp = function (grunt) {
+    return function (options, allFiles) {
+        if (allFiles) {
+            _delete(grunt)(options.working_directory);
+            _delete(grunt)(options.working_directory + options.packaging_directory_name);
+            _delete(grunt)(options.package_location + &#x27;*.tar.gz&#x27;);
+            _delete(grunt)(options.package_location + &#x27;*.build&#x27;);
+            _delete(grunt)(options.package_location + &#x27;*.changes&#x27;);
+            _delete(grunt)(options.package_location + &#x27;*.deb&#x27;);
+        } else if (!grunt.option(&#x27;verbose&#x27;)) {
+            _delete(grunt)(options.working_directory + options.packaging_directory_name);
+            _delete(grunt)(options.package_location + &#x27;*.tar.gz&#x27;);
+            _delete(grunt)(options.package_location + &#x27;*.build&#x27;);
+        }
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+module.exports = function (grunt) {
+
+&#x27;use strict&#x27;;
+
+var _validateOptions = require(&#x27;./options.js&#x27;)._validate(grunt),
+    _copy = fileSystem._copy(grunt),
+    _cleanUp = fileSystem.<span class="apidocCodeKeywordSpan">_cleanUp</span>(grunt),
+    _findAndReplace = replace._findAndReplace(grunt),
+    _transformAndReplace = replace._transformAndReplace(grunt),
+    preparePackageContents = function (makefile, files, follow_soft_links, quiet) {
+        _transformAndReplace([makefile], &#x27;\\$\\{file_list\\}&#x27;, files, function (file) {
+            return file.src.filter(function (filepath) {
+                if (!grunt.file.exists(filepath)) {
+                    grunt.log.warn(&#x27;File \&#x27;&#x27; + filepath + &#x27;\&#x27; not found&#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-debian-package.fileOrDirectory._copy" id="apidoc.element.grunt-debian-package.fileOrDirectory._copy">
+        function <span class="apidocSignatureSpan">grunt-debian-package.fileOrDirectory.</span>_copy
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_copy = function (grunt) {
+    return function (source, destination) {
+        grunt.file.mkdir(destination);
+        grunt.file.expand(source).forEach(function (file) {
+            if (grunt.file.isDir(file)) {
+                grunt.file.recurse(file, function callback(abspath, rootdir, subdir, filename) {
+                    grunt.verbose.writeln(&#x27;Copying: \&#x27;&#x27; + abspath + &#x27;\&#x27; to \&#x27;&#x27; + destination + &#x27;/&#x27; + (subdir ? subdir + &#x27;/&#x27; : &#x27;&#x27;) +
+filename + &#x27;\&#x27;&#x27;);
+                    grunt.file.copy(abspath, destination + &#x27;/&#x27; + (subdir ? subdir + &#x27;/&#x27; : &#x27;&#x27;) + filename);
+                });
+            } else {
+                grunt.file.copy(file, destination);
+            }
+        });
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var replace = require(&#x27;./replace.js&#x27;);
+
+module.exports = function (grunt) {
+
+&#x27;use strict&#x27;;
+
+var _validateOptions = require(&#x27;./options.js&#x27;)._validate(grunt),
+    _copy = fileSystem.<span class="apidocCodeKeywordSpan">_copy</span>(grunt),
+    _cleanUp = fileSystem._cleanUp(grunt),
+    _findAndReplace = replace._findAndReplace(grunt),
+    _transformAndReplace = replace._transformAndReplace(grunt),
+    preparePackageContents = function (makefile, files, follow_soft_links, quiet) {
+        _transformAndReplace([makefile], &#x27;\\$\\{file_list\\}&#x27;, files, function (file) {
+            return file.src.filter(function (filepath) {
+                if (!grunt.file.exists(filepath)) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-debian-package.fileOrDirectory._delete" id="apidoc.element.grunt-debian-package.fileOrDirectory._delete">
+        function <span class="apidocSignatureSpan">grunt-debian-package.fileOrDirectory.</span>_delete
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_delete = function (grunt) {
+    return function (path) {
+        if (grunt.file.expand(path).length &#x3e; 0) {
+            grunt.verbose.writeln(&#x27;Deleting: \&#x27;&#x27; + grunt.file.expand(path) + &#x27;\&#x27;&#x27;);
+            grunt.file.delete(grunt.file.expand(path), {force: true});
+        }
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-debian-package.options" id="apidoc.module.grunt-debian-package.options">module grunt-debian-package.options</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-debian-package.options._validate" id="apidoc.element.grunt-debian-package.options._validate">
+        function <span class="apidocSignatureSpan">grunt-debian-package.options.</span>_validate
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_validate = function (grunt) {
+    return function (options, quiet) {
+        var valid = true;
+        if (!options.maintainer) {
+            if (!quiet) {
+                grunt.log.subhead(&#x27;no maintainer details provided!!&#x27;);
+                grunt.log.errorlns(&#x27;please add the \&#x27;maintainer\&#x27; option specifying the name and email in your debian_package configuration
+ in your Gruntfile.js or add\&#x27;DEBFULLNAME\&#x27; and \&#x27;DEBEMAIL\&#x27; environment variable (i.e. export DEBFULLNAME=&#x22;James D Bloom&#x22; &#x26;&#x26; export DEBEMAIL=&#x22;jamesdbloom@email.com&#x22;)&#x27;);
+            }
+            valid = false;
+        }
+        if (options.maintainer &#x26;&#x26; !options.maintainer.name) {
+            if (!quiet) {
+                grunt.log.subhead(&#x27;no maintainer name provided!!&#x27;);
+                grunt.log.errorlns(&#x27;please add the \&#x27;maintainer.name\&#x27; option in your debian_package configuration in your Gruntfile
+.js or add a\&#x27;DEBFULLNAME\&#x27; environment variable (i.e. export DEBFULLNAME=&#x22;James D Bloom&#x22;)&#x27;);
+            }
+            valid = false;
+        }
+        if (options.maintainer &#x26;&#x26; !options.maintainer.email) {
+            if (!quiet) {
+                grunt.log.subhead(&#x27;no maintainer email provided!!&#x27;);
+                grunt.log.errorlns(&#x27;please add the \&#x27;maintainer.email\&#x27; option in your debian_package configuration in your Gruntfile
+.js or add a\&#x27;DEBEMAIL\&#x27; environment variable (i.e. export DEBEMAIL=&#x22;jamesdbloom@email.com&#x22;)&#x27;);
+            }
+            valid = false;
+        }
+        if (!options.short_description) {
+            if (!quiet) {
+                grunt.log.subhead(&#x27;no short description provided!!&#x27;);
+                grunt.log.errorlns(&#x27;please add the \&#x27;short_description\&#x27; option in your debian_package configuration in your Gruntfile
+.js or add a\&#x27;description\&#x27; field to package.json&#x27;);
+            }
+            valid = false;
+        }
+        if (!options.long_description) {
+            if (!quiet) {
+                grunt.log.subhead(&#x27;no long description provided!!&#x27;);
+                grunt.log.errorlns(&#x27;please add the \&#x27;long_description\&#x27; option in your debian_package configuration in your Gruntfile
+.js or add a multi line\&#x27;description\&#x27; field to package.json (note: the first line is used as the short description and the remaining lines are used as the long description)&#x27;);
+            }
+        } else {
+            // add extra space at start to ensure format is correct and allow simple unit test comparisons
+            options.long_description = &#x27; &#x27; + options.long_description;
+        }
+        if (options.working_directory &#x26;&#x26; !options.working_directory.endsWidth(&#x22;/&#x22;)) {
+            options.working_directory = options.working_directory + &#x22;/&#x22;;
+        }
+        if (valid) {
+            options.package_name = options.package_name || (options.prefix || &#x27;&#x27;) + (options.name || &#x27;debian_package&#x27;) + (options
+.postfix || &#x27;&#x27;);
+            options.package_location = options.working_directory + options.package_name;
+        }
+        return valid;
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var fileSystem = require(&#x27;./fileOrDirectory.js&#x27;);
+var replace = require(&#x27;./replace.js&#x27;);
+
+module.exports = function (grunt) {
+
+&#x27;use strict&#x27;;
+
+var _validateOptions = require(&#x27;./options.js&#x27;).<span class="apidocCodeKeywordSpan">_validate</span>(grunt),
+    _copy = fileSystem._copy(grunt),
+    _cleanUp = fileSystem._cleanUp(grunt),
+    _findAndReplace = replace._findAndReplace(grunt),
+    _transformAndReplace = replace._transformAndReplace(grunt),
+    preparePackageContents = function (makefile, files, follow_soft_links, quiet) {
+        _transformAndReplace([makefile], &#x27;\\$\\{file_list\\}&#x27;, files, function (file) {
+            return file.src.filter(function (filepath) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-debian-package.replace" id="apidoc.module.grunt-debian-package.replace">module grunt-debian-package.replace</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-debian-package.replace._findAndReplace" id="apidoc.element.grunt-debian-package.replace._findAndReplace">
+        function <span class="apidocSignatureSpan">grunt-debian-package.replace.</span>_findAndReplace
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_findAndReplace = function (grunt) {
+    return function (files, find, replace) {
+        grunt.verbose.writeln(&#x27;Replacing: \&#x27;&#x27; + replace.replaceAll(&#x27;\\n&#x27;, &#x27;\\n&#x27;).replaceAll(&#x27;\\t&#x27;, &#x27;\\t&#x27;) + &#x27;\&#x27; for \&#x27;&#x27; + find.replaceAll
+(&#x27;\\\\&#x27;, &#x27;&#x27;) + &#x27;\&#x27; in &#x27; + files.join(&#x27; and &#x27;));
+        require(&#x27;replace&#x27;)({
+            regex: find,
+            replacement: replace,
+            paths: files,
+            recursive: true,
+            silent: true
+        });
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+module.exports = function (grunt) {
+
+&#x27;use strict&#x27;;
+
+var _validateOptions = require(&#x27;./options.js&#x27;)._validate(grunt),
+    _copy = fileSystem._copy(grunt),
+    _cleanUp = fileSystem._cleanUp(grunt),
+    _findAndReplace = replace.<span class="apidocCodeKeywordSpan">_findAndReplace</span>(grunt),
+    _transformAndReplace = replace._transformAndReplace(grunt),
+    preparePackageContents = function (makefile, files, follow_soft_links, quiet) {
+        _transformAndReplace([makefile], &#x27;\\$\\{file_list\\}&#x27;, files, function (file) {
+            return file.src.filter(function (filepath) {
+                if (!grunt.file.exists(filepath)) {
+                    grunt.log.warn(&#x27;File \&#x27;&#x27; + filepath + &#x27;\&#x27; not found&#x27;);
+                    return false;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-debian-package.replace._transformAndReplace" id="apidoc.element.grunt-debian-package.replace._transformAndReplace">
+        function <span class="apidocSignatureSpan">grunt-debian-package.replace.</span>_transformAndReplace
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_transformAndReplace = function (grunt) {
+    return function (files, find, list, transform) {
+        if (list) {
+            var replace = &#x27;&#x27;;
+
+            for (var i = 0; i &#x3c; list.length; i++) {
+                replace += transform(list[i]);
+            }
+
+            findAndReplace(grunt)(files, find, replace);
+        }
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+&#x27;use strict&#x27;;
+
+var _validateOptions = require(&#x27;./options.js&#x27;)._validate(grunt),
+    _copy = fileSystem._copy(grunt),
+    _cleanUp = fileSystem._cleanUp(grunt),
+    _findAndReplace = replace._findAndReplace(grunt),
+    _transformAndReplace = replace.<span class="apidocCodeKeywordSpan">_transformAndReplace</span>(grunt),
+    preparePackageContents = function (makefile, files, follow_soft_links, quiet) {
+        _transformAndReplace([makefile], &#x27;\\$\\{file_list\\}&#x27;, files, function (file) {
+            return file.src.filter(function (filepath) {
+                if (!grunt.file.exists(filepath)) {
+                    grunt.log.warn(&#x27;File \&#x27;&#x27; + filepath + &#x27;\&#x27; not found&#x27;);
+                    return false;
+                } else {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
